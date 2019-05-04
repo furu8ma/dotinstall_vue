@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>My dotinstall Vue app </title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <p>Vue Test</p>
+    <br>
+    <br>
+    <div id="app" class="container">
+      <p> Hello {{ first_name.toUpperCase() }} {{ last_name }} </p>
+      <p> <input type="text" v-model="first_name"> </p>
+      <br>
+
+      <!-- TODO -->
+      <!--
+        <ul>
+        <li> {{todos[0]}} </li>
+        <li> {{todos[1]}} </li>
+        <li> {{todos[2]}} </li>
+        </ul>
+      -->
+      <h1> 
+        <button @click="purge">Purge</button>
+
+        VUE TEST TODO 
+        <span class="info">{{remaining.length}} / {{todos.length}}</span>
+      </h1>
+      <ul>
+        <li v-for="(todo,index) in todos">
+          <input type="checkbox" v-model="todo.isDone">
+          <span :class="{done: todo.isDone}">{{todo.title}} :</span>
+          <span @click="deleteItem(index)" class="command">[x]</span>
+        </li>
+        <li v-show="!todos.length">NONE.</li>
+      </ul>
+
+      <!--
+        <ul v-if="todos.length">
+        <li v-for="(todo,index) in todos">
+        <input type="checkbox" v-model="todo.isDone">
+        <span :class="{done: todo.isDone}">{{todo.title}} :</span>
+        <span @click="deleteItem(index)" class="command">[x]</span>
+        </li>
+        </ul>
+
+        <ul v-else>
+        <li> Nothing to DO!</li>
+        </ul>
+      -->
+
+      <form @submit.prevent="addItem">
+        <input type="text" v-model="newItem">
+        <input type="submit" value="ADD">
+      </form>
+
+
+    </div>
+
+
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+
+</html>
